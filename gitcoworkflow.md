@@ -73,6 +73,6 @@ git push origin main
 git checkout YOUR_BRANCH
 ```
 
-在某些比較嚴僅的環境中(例如Github、Gitlab)，main分支可能會被系統機制鎖定，必需通過系統內鍵的Pull Request，才能通過審核，合併到main。另外，也有一些關於開發上的[Git workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)，主要針對功能管理、版本發佈、錯誤修正等控制。有機會再為大家介紹。
+在某些比較嚴僅的環境中(例如Github、Gitlab)，main分支可能會被系統機制鎖定，必需通過系統內建的Pull Request(或Merge Request)，才能通過審核，合併到main。另外，也有一些關於開發上的[Git workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)，主要針對功能管理、版本發佈、錯誤修正等控制。有機會再為大家介紹。
 
 希望以上的流程，可以有效且容易地讓大家協作。如果有任何command錯誤或更新，都可以經Github Pull Request通知筆者。
