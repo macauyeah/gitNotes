@@ -30,3 +30,11 @@ git submodule update --remote
 # run any unit test, integration test, confirm that it works after submodule update, then commit
 git add -u && git commit -m 'update sub module and auto checkout'
 ```
+注意，如果C君有多於一個submodule，上述指令會全部一口氣更新。另外，如果你覺得B君的最新版本不能用，還是可以針對B君取得特定的版本。
+
+```
+cd SUBMODULE_FOLDER
+git checkout SUBMODULE_COMMIT
+cd MAIN_FOLDER
+git add -u && git commit -m 'update sub module to specific commit'
+```
