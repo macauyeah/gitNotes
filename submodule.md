@@ -14,7 +14,7 @@
 
 # Command
 馬上看來來Submodule可以怎樣做。 假設你已經知道git 怎樣用，也起了git repo。假設你是C君，進入你的本機repo資料夾內，使用submodule參數。
-```
+```bash
 cd SOMEWHREE_IN_MAIN_FOLDER
 git submodule add SUBMODLE_REPO_LINK
 cd MAIN_FOLDER
@@ -24,7 +24,7 @@ git add -u && git commit -m 'Add sub module'
 上面的效果，就是把C君當前repo的狀態，連結到B君submodule當時預設分枝(default branch)的最後一個commit 中。然後C君在自己的repo怎樣更新，它引用到B君的submodule版本都不會變。
 
 直到某一刻，B君說他加了一個穩定的新功能，請C也連帶更新一下。C君也做好自己的準備後，使用submodule參數進行更新。
-```
+```bash
 cd MAIN_FOLDER
 git submodule update --remote
 # run any unit test, integration test, confirm that it works after submodule update, then commit
@@ -32,9 +32,21 @@ git add -u && git commit -m 'update sub module and auto checkout'
 ```
 注意，如果C君有多於一個submodule，上述指令會全部一口氣更新。另外，如果你覺得B君的最新版本不能用，還是可以針對B君取得特定的版本。
 
-```
+```bash
 cd SUBMODULE_FOLDER
 git checkout SUBMODULE_COMMIT
 cd MAIN_FOLDER
 git add -u && git commit -m 'update sub module to specific commit'
+```
+
+## if you checkout or clone main module repo in other machine
+```bash
+git clone ...
+ls SUBMODULE_FOLDER
+# SUBMODULE_FOLDER will be empty
+cd MAIN_FOLDER
+git submodule init
+git submodule update
+ls SUBMODULE_FOLDER
+# submodule code should be there
 ```
