@@ -39,7 +39,7 @@ cd MAIN_FOLDER
 git add -u && git commit -m 'update sub module to specific commit'
 ```
 
-## if you checkout or clone main module repo in other machine
+如果，你是D君，直接下載A君的多module project，那在初次下載時，submodule還是空的，需要先init，再update。
 ```bash
 git clone ...
 ls SUBMODULE_FOLDER
@@ -50,3 +50,16 @@ git submodule update
 ls SUBMODULE_FOLDER
 # submodule code should be there
 ```
+
+如果你同時是A,B,C君，其實多個module也是你自己管理的，你可以直接進入各個submodule commit。但要記得，main module也要commit才會連上最新的submodule。
+```bash
+cd SUBMODULE_FOLDER
+# make some change
+git add -u && git commit -m 'update in submodule only'
+# remeber to push submodule to origin
+cd MAIN_FOLDER
+git add -u && git commit -m 'update main module to ref new submodule commit'
+# remeber to push main module to origin
+```
+
+不過筆者還是建議大家分開使用。不要全部混在一起，因為太多同步問題會漏。
