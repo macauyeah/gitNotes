@@ -16,7 +16,7 @@
 ## 那麼我們就大力簡化吧 - github flow 開發流程
 既然大部份情況，大家都只在乎 main / master / 預設分支，那我們也沒有必要跟著複雜的 git flow 走。但在 DevOps 的角度下，為保證 main / master 穩定性，大家還是至少要遵守branching 、pull (merge) request 、code review 、auto test 原則 。
 
-github就最簡單的branching 、pull  request 、code review 提出了它們的 [github flow](https://githubflow.github.io/)。
+github就最簡單的branching 、pull  request 、code review 提出了它們的 [github flow doc](https://docs.github.com/en/get-started/using-github/github-flow), [github flow](https://githubflow.github.io/)。
 
 簡而言之，就是每個人在開發時，都先從 main 起一個新分支，不斷更新。待合適的時候，就透過 pull requst，向原項目負責人提出申請，只要項目負責人點頭，就可以把改動傳入 main 中。又因為Github 原本的定位在於個人與個人之間的協作，初時已經需要通過fork建立獨立的倉庫，那怕你不愛分支也必需分支。所以 pull request，code review 的作用更明顯，後逐的協作更理所當然。
 
