@@ -16,10 +16,24 @@
 ## 那麼我們就大力簡化吧 - github flow 開發流程
 既然大部份情況，大家都只在乎 main / master / 預設分支，那我們也沒有必要跟著複雜的 git flow 走。但在 DevOps 的角度下，為保證 main / master 穩定性，大家還是至少要遵守branching 、pull (merge) request 、code review 、auto test 原則 。
 
-github就最簡單的branching 、pull  request 、code review 提出了它們的 [github flow doc](https://docs.github.com/en/get-started/using-github/github-flow), [github flow](https://githubflow.github.io/)。
+github就最簡單的branching 、 pull request 、 code review 提出了它們的 [github flow doc](https://docs.github.com/en/get-started/using-github/github-flow), [github flow](https://githubflow.github.io/)。
 
 簡而言之，就是每個人在開發時，都先從 main 起一個新分支，不斷更新。待合適的時候，就透過 pull requst，向原項目負責人提出申請，只要項目負責人點頭，就可以把改動傳入 main 中。又因為Github 原本的定位在於個人與個人之間的協作，初時已經需要通過fork建立獨立的倉庫，那怕你不愛分支也必需分支。所以 pull request，code review 的作用更明顯，後逐的協作更理所當然。
 
-
 但若果回到公司團隊協，Github flow 就應該像筆者之前提出協作方案，各自起分支，最後由某個人守門，把所有結果放到 main 中。（[前文連結](gitcoworkflow.md)）
 
+## Github flow 沒有提及的發佈 - 佈署 | Release - Deployment
+在上文中，經過 pull request 、 code review 、 auto test ，道理上，開發者可以做的都已經做過了，然後就是等待發佈 - Release。
+
+對於單純的庫類型的程式碼，筆者認為，的確沒有事可以再做，實務上就是直接找人其他程多員試用最新版本，看看有沒有問題。只要 main / master 上，明確的表示版本號的變更，就差不多等於直接發佈。有需要提供binary版本的，就還需要觸發上載binary的流程，但這個跟 pull request 觸發 auto test 差不多， auto test 成功後就上載。
+
+對於服務類型的程式碼，例如 Web App 等，直接發佈到正式環境還是有些不妥吧？始終會即時影響到業務，我們至少有個測試場，經用戶做實際的業務操作去驗收。但這個時機，應該是在Github flow的什麼時候做？
+
+在原始的git flow中，有一個叫做 develop 的相對穩定分支，僅次於 main 。它是功能開發完成後第一次pull request 的地方，我們可以用這個概念來做自動發佈到測試場。但若在github flow 中加入了這個 develop 分支，其實就等於複雜地回到過去傳統的 git flow中，對好多新手來講難以接受。
+
+Github flow 的簡化，其實很大依賴著自動化測試。現在的測試用例，並不再限於單元測試。就連整合測試，也可以經Docker等容器化技術去做，只要我們的自動化測試有足夠信心，就可以發佈。但反觀我們的 Web App 例子，我們認為自動化測試難似涵蓋所有情境，也難以開發。所以我們還在有個時間發佈到測試場，進行人工測試。
+
+筆者結合自己的經驗，配上國外討論區 Stack overflow 的內容，筆者認為Github flow上進行pull request後，就是最好的發佈測試場時機。所以我們需要盡快進行驗收測試，完成後在Git commit上加上Tag，以示通過驗收測試，可以發佈正式環境的版本。
+
+不過這個模式是有一些前題假設的
+- 快速迭代的: 驗收完成後，盡可能快地發佈到正式環境，不然會阻礙下一個功能的pull request驗收，或是覆蓋了上一個pull request的驗收環境。
