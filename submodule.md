@@ -63,3 +63,10 @@ git add -u && git commit -m 'update main module to ref new submodule commit'
 ```
 
 不過筆者還是建議大家分開使用。不要全部混在一起，因為太多同步問題會漏。
+
+## draft
+.gitmodules
+[submodule "some-sub-module"]
+	path = some-sub-module
+	url = ../some-sub-module.git
+	branch = minimize
